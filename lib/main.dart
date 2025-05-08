@@ -3,13 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'services/auth_service.dart';
-import 'screens/auth_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/account_screen.dart';
 import 'screens/add_item_screen.dart';
 import 'screens/add_request_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/splash_screen.dart';
 
 void main() async {
