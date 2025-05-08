@@ -231,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BendeVar'),
+        title: Text(_userData?['name'] ?? 'BendeVar'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
