@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "703613764046",
+    "project_id": "bendevar-f041c",
+    "storage_bucket": "bendevar-f041c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703613764046:android:4d6e055cca44ed5edaeb9f",
+        "android_client_info": {
+          "package_name": "com.example.bende_var_mobile_app_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm910LeOGtIp9DKjw_u_hVeTRsTZX12wg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

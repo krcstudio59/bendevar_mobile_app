@@ -1,0 +1,1 @@
+ /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/.dart_tool/flutter_build/bf37f725a0b1d3b43ac30f1a49722000/native_assets.json: 
