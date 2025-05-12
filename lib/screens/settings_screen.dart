@@ -33,24 +33,53 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _loadUserData() async {
     try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        setState(() => _isLoading = false);
+        print('SettingsScreen: Current user is null.');
+        return;
+      }
+
       final userDoc = await FirebaseFirestore.instance
           .collection('users')
-          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .doc(user.uid)
           .get();
 
       if (userDoc.exists) {
         final data = userDoc.data()!;
         setState(() {
-          _usernameController.text = data['username'] ?? '';
-          _phoneController.text = data['phone'] ?? '';
-          _schoolController.text = data['school'] ?? '';
-          _facultyController.text = data['faculty'] ?? '';
-          _departmentController.text = data['department'] ?? '';
+          _usernameController.text = data['name'] ?? '';
+          _phoneController.text = data['phoneNumber'] ?? '';
           _emailController.text = data['email'] ?? '';
           _addressController.text = data['address'] ?? '';
-          _studentIdUrl = data['studentIdUrl'];
+
+          if (data['studentInfo'] != null) {
+            final studentInfoData = data['studentInfo'] as Map<String, dynamic>;
+            _schoolController.text = studentInfoData['schoolName'] ?? '';
+            _facultyController.text = studentInfoData['faculty'] ?? '';
+            _departmentController.text = studentInfoData['department'] ?? '';
+          } else {
+            _schoolController.text = '';
+            _facultyController.text = '';
+            _departmentController.text = '';
+          }
+          _studentIdUrl = data['studentDocumentUrl'];
           _isLoading = false;
         });
+      } else {
+        setState(() {
+          _usernameController.text = '';
+          _phoneController.text = '';
+          _schoolController.text = '';
+          _facultyController.text = '';
+          _departmentController.text = '';
+          _emailController.text =
+              FirebaseAuth.instance.currentUser?.email ?? '';
+          _addressController.text = '';
+          _studentIdUrl = null;
+          _isLoading = false;
+        });
+        print('SettingsScreen: User document does not exist in Firestore.');
       }
     } catch (e) {
       print('Kullanıcı bilgileri yüklenirken hata: $e');
@@ -107,18 +136,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
       setState(() => _isLoading = true);
 
       try {
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(FirebaseAuth.instance.currentUser?.uid)
-            .update({
-          'username': _usernameController.text,
-          'phone': _phoneController.text,
-          'school': _schoolController.text,
-          'faculty': _facultyController.text,
-          'department': _departmentController.text,
+        final user = FirebaseAuth.instance.currentUser;
+        if (user == null) {
+          setState(() => _isLoading = false);
+          return;
+        }
+
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'name': _usernameController.text,
+          'phoneNumber': _phoneController.text,
+          'studentInfo': {
+            'schoolName': _schoolController.text,
+            'faculty': _facultyController.text,
+            'department': _departmentController.text,
+          },
           'email': _emailController.text,
           'address': _addressController.text,
-        });
+        }, SetOptions(merge: true));
 
         setState(() {
           _isEditing = false;

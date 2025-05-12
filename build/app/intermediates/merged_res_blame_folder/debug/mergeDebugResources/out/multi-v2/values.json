@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.bende_var_mobile_app_test.app-mergeDebugResources-29:/values/values.xml",
+            "outputFile": "com.example.bende_var_mobile_app_test.app-mergeDebugResources-28:/values/values.xml",
             "map": [
                 {
                     "source": "/Users/bahasorkun/.gradle/caches/8.10.2/transforms/5f63f7153f1baf7ab0ee72b8942cd5b1/transformed/lifecycle-viewmodel-2.7.0/res/values/values.xml",

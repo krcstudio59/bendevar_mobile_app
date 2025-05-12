@@ -25,6 +25,29 @@ class _AuthScreenState extends State<AuthScreen> {
     return email.toLowerCase().endsWith('.edu.tr');
   }
 
+  Future<void> _signInWithGoogle() async {
+    setState(() => _isLoading = true);
+    try {
+      final user = await context.read<AuthService>().signInWithGoogle();
+      if (user != null && mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Google ile giriş başarısız: ${e.toString()}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
   Future<void> _submitForm() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -38,16 +61,11 @@ class _AuthScreenState extends State<AuthScreen> {
             );
       } else {
         await context.read<AuthService>().registerWithEmailAndPassword(
-          _emailController.text,
-          _passwordController.text,
-          {
-            'name': _nameController.text,
-            'email': _emailController.text,
-            'phone': _phoneController.text,
-            'createdAt': DateTime.now(),
-            'score': 0,
-          },
-        );
+              _emailController.text,
+              _passwordController.text,
+              _nameController.text,
+              _phoneController.text,
+            );
       }
 
       if (!mounted) return;
@@ -200,6 +218,33 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: Text(_isLogin ? 'Giriş Yap' : 'Kayıt Ol'),
                       ),
                       const SizedBox(height: 16),
+                      // Google Sign-In Button
+                      if (_isLogin) ...[
+                        const Row(
+                          children: <Widget>[
+                            Expanded(child: Divider()),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text('VEYA'),
+                            ),
+                            Expanded(child: Divider()),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton.icon(
+                          icon: Image.asset('assets/images/google_logo.png',
+                              height:
+                                  24.0), // Google logosu için assets klasöründe bir dosya olmalı
+                          label: const Text('Google ile Giriş Yap'),
+                          onPressed: _signInWithGoogle,
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(50),
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
                       TextButton(
                         onPressed: () {
                           setState(() {

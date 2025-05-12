@@ -9,6 +9,8 @@ import 'add_item_screen.dart';
 import 'add_request_screen.dart';
 import 'settings_screen.dart';
 import 'account_screen.dart';
+import 'search_screen.dart';
+import 'favorites_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,55 +28,76 @@ class _HomeScreenState extends State<HomeScreen> {
   List<DocumentSnapshot> _featuredItems = [];
   List<DocumentSnapshot> _latestItems = [];
 
+  void _onItemTapped(int index) {
+    if (_selectedIndex == index && index == 0 && _isLoading) {
+      return;
+    }
+    setState(() {
+      _selectedIndex = index;
+      if (index == 0 && (_featuredItems.isEmpty || _latestItems.isEmpty)) {
+        _loadUserData();
+        _loadItems();
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    _loadUserData();
-    _loadItems();
+    if (_selectedIndex == 0) {
+      _loadUserData();
+      _loadItems();
+    }
   }
 
   Future<void> _loadUserData() async {
+    if (_selectedIndex == 0 && mounted) setState(() => _isLoading = true);
     try {
-      final userDoc = await _firestore
-          .collection('users')
-          .doc(_auth.currentUser?.uid)
-          .get();
-      if (userDoc.exists) {
+      final user = _auth.currentUser;
+      if (user == null) {
+        if (mounted) setState(() => _isLoading = false);
+        return;
+      }
+      final userDoc = await _firestore.collection('users').doc(user.uid).get();
+      if (userDoc.exists && mounted) {
         setState(() {
           _userData = userDoc.data();
-          _isLoading = false;
+          if (_selectedIndex == 0) _isLoading = false;
         });
+      } else if (mounted) {
+        if (_selectedIndex == 0) setState(() => _isLoading = false);
       }
     } catch (e) {
       print('Kullanıcı bilgileri yüklenirken hata: $e');
+      if (mounted && _selectedIndex == 0) setState(() => _isLoading = false);
     }
   }
 
   Future<void> _loadItems() async {
-    setState(() => _isLoading = true);
+    if (_selectedIndex == 0 && mounted) setState(() => _isLoading = true);
     try {
-      // En çok favorilenen 5 ürünü al
       final featuredQuery = await FirebaseFirestore.instance
           .collection('items')
           .orderBy('favoriteCount', descending: true)
           .limit(5)
           .get();
 
-      // En son eklenen 5 ürünü al
       final latestQuery = await FirebaseFirestore.instance
           .collection('items')
           .orderBy('createdAt', descending: true)
           .limit(5)
           .get();
 
-      setState(() {
-        _featuredItems = featuredQuery.docs;
-        _latestItems = latestQuery.docs;
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _featuredItems = featuredQuery.docs;
+          _latestItems = latestQuery.docs;
+          if (_selectedIndex == 0) _isLoading = false;
+        });
+      }
     } catch (e) {
       print('Ürünler yüklenirken hata: $e');
-      setState(() => _isLoading = false);
+      if (mounted && _selectedIndex == 0) setState(() => _isLoading = false);
     }
   }
 
@@ -85,14 +108,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return RefreshIndicator(
       onRefresh: () async {
-        await _loadUserData();
-        await _loadItems();
+        if (_selectedIndex == 0) {
+          await _loadUserData();
+          await _loadItems();
+        }
       },
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Öne Çıkan Ürünler
             const Padding(
               padding: EdgeInsets.all(16),
               child: Text(
@@ -148,8 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-
-            // Son Eklenen Ürünler
             const Padding(
               padding: EdgeInsets.all(16),
               child: Text(
@@ -220,9 +242,15 @@ class _HomeScreenState extends State<HomeScreen> {
         currentScreen = _buildHomeContent();
         break;
       case 1:
-        currentScreen = const AccountScreen();
+        currentScreen = const SearchScreen();
         break;
       case 2:
+        currentScreen = const FavoritesScreen();
+        break;
+      case 3:
+        currentScreen = const AccountScreen();
+        break;
+      case 4:
         currentScreen = const SettingsScreen();
         break;
       default:
@@ -243,17 +271,29 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          IconButton(icon: const Icon(Icons.refresh), onPressed: _loadItems),
+          if (_selectedIndex == 0)
+            IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: () {
+                  _loadUserData();
+                  _loadItems();
+                }),
         ],
       ),
       body: currentScreen,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
-        items: const [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Ana Sayfa',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Ara',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorilerim',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -264,54 +304,57 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Ayarlar',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.deepPurple,
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        onTap: _onItemTapped,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: _selectedIndex == 0
-          ? SpeedDial(
-              animatedIcon: AnimatedIcons.menu_close,
-              animatedIconTheme: const IconThemeData(size: 22.0),
-              backgroundColor: Theme.of(context).primaryColor,
-              visible: true,
-              closeManually: false,
-              curve: Curves.bounceIn,
-              overlayColor: Colors.black,
-              overlayOpacity: 0.5,
-              onOpen: () => print('OPENING DIAL'),
-              onClose: () => print('DIAL CLOSED'),
-              tooltip: 'Hızlı Erişim',
-              heroTag: 'speed-dial-hero-tag',
-              elevation: 8.0,
-              shape: const CircleBorder(),
-              children: [
-                SpeedDialChild(
-                  child: const Icon(Icons.add_circle_outline),
-                  backgroundColor: Colors.green,
-                  label: 'Bende Var',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AddItemScreen(),
-                      ),
-                    );
-                  },
-                ),
-                SpeedDialChild(
-                  child: const Icon(Icons.request_page),
-                  backgroundColor: Colors.blue,
-                  label: 'Bana Lazım',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AddRequestScreen(),
-                      ),
-                    );
-                  },
-                ),
-              ],
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: SpeedDial(
+                icon: Icons.add,
+                activeIcon: Icons.close,
+                backgroundColor: Colors.deepPurple,
+                foregroundColor: Colors.white,
+                visible: true,
+                curve: Curves.bounceIn,
+                children: [
+                  SpeedDialChild(
+                    child: const Icon(Icons.check_circle_outline,
+                        color: Colors.white),
+                    backgroundColor: Colors.green,
+                    label: 'Bende Var',
+                    labelStyle:
+                        const TextStyle(fontSize: 16.0, color: Colors.black),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddItemScreen()),
+                      );
+                    },
+                  ),
+                  SpeedDialChild(
+                    child: const Icon(Icons.help_outline, color: Colors.white),
+                    backgroundColor: Colors.orange,
+                    label: 'Bana Lazım',
+                    labelStyle:
+                        const TextStyle(fontSize: 16.0, color: Colors.black),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddRequestScreen()),
+                      );
+                    },
+                  ),
+                ],
+              ),
             )
           : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

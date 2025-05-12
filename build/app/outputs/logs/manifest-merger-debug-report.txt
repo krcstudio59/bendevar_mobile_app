@@ -12,6 +12,8 @@ MERGED from [:firebase_storage] /Users/bahasorkun/Documents/GitHub/bendevar_mobi
 MERGED from [:firebase_storage] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_storage/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_core/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_core/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-13:19
+MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/a405bde317ed168870df40719f06dfa4/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:13:5-24:19
@@ -26,6 +28,8 @@ MERGED from [com.google.firebase:firebase-common-ktx:20.4.3] /Users/bahasorkun/.
 MERGED from [com.google.firebase:firebase-common-ktx:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1b56a86e29c60682b04b360b1703e20b/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-common:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/e166c952ed425beeb585bb8e2b4fe0d8/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:22:5-39:19
 MERGED from [com.google.firebase:firebase-common:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/e166c952ed425beeb585bb8e2b4fe0d8/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:22:5-39:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/03c6730f22ac5087785235714e1d3357/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/03c6730f22ac5087785235714e1d3357/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.play:integrity:1.2.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/9d3227361bc41efe1ff2817766580225/transformed/jetified-integrity-1.2.0/AndroidManifest.xml:5:5-6:19
 MERGED from [com.google.android.play:integrity:1.2.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/9d3227361bc41efe1ff2817766580225/transformed/jetified-integrity-1.2.0/AndroidManifest.xml:5:5-6:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/5948345bced23e5c549880d61536e696/transformed/jetified-firebase-appcheck-interop-17.1.0/AndroidManifest.xml:21:5-20
@@ -67,6 +71,8 @@ MERGED from [:firebase_auth] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_
 MERGED from [:firebase_storage] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_storage/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_core/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-15:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-7:12
+MERGED from [:google_sign_in_android] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/google_sign_in_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/a405bde317ed168870df40719f06dfa4/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-storage:20.3.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/32860c2dd4d0aaa2377927d0b10abe79/transformed/jetified-firebase-storage-20.3.0/AndroidManifest.xml:15:1-39:12
@@ -74,13 +80,13 @@ MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/bahasorkun
 MERGED from [com.google.firebase:firebase-appcheck:17.1.2] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1297dd6daedc751cfec4ae4a2cd17de6/transformed/jetified-firebase-appcheck-17.1.2/AndroidManifest.xml:15:1-34:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1b56a86e29c60682b04b360b1703e20b/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.firebase:firebase-common:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/e166c952ed425beeb585bb8e2b4fe0d8/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:15:1-41:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/34e0d2d945c88c4c34e2ba3d5108f01b/transformed/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/606bc7bb42226c43c85986cacdd324be/transformed/jetified-play-services-auth-api-phone-18.0.2/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/16f7275201d61a2f7014090e369e5210/transformed/jetified-play-services-auth-base-18.0.10/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/03c6730f22ac5087785235714e1d3357/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1ca7f89971d8be3e5b9167293b7d5724/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.play:integrity:1.2.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/9d3227361bc41efe1ff2817766580225/transformed/jetified-integrity-1.2.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/5948345bced23e5c549880d61536e696/transformed/jetified-firebase-appcheck-interop-17.1.0/AndroidManifest.xml:15:1-23:12
-MERGED from [androidx.loader:loader:1.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/28d2e3c0e49c0364b206587796d49ab6/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/93f95a2d8ff346534a63688ae85a0bd6/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/0ecb82cd9ae1b185c6c32a4db68ab679/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/c6fa9877c740e31251a4787c0af35ce8/transformed/loader-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/25778adce47accbc26e5040d1034bb24/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/28b4f976a1695fd803e510dcd105404a/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/5f63f7153f1baf7ab0ee72b8942cd5b1/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:17:1-22:12
@@ -136,6 +142,8 @@ ADDED from /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/android/app/sr
 		ADDED from /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/android/app/src/main/AndroidManifest.xml:42:19-48
 uses-permission#android.permission.INTERNET
 ADDED from /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/android/app/src/debug/AndroidManifest.xml:6:5-66
+MERGED from [:google_sign_in_android] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/google_sign_in_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-67
+MERGED from [:google_sign_in_android] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/google_sign_in_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-67
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/a405bde317ed168870df40719f06dfa4/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:11:5-67
@@ -164,6 +172,10 @@ MERGED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_
 MERGED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_core/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in_android] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/google_sign_in_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in_android] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/google_sign_in_android/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/a405bde317ed168870df40719f06dfa4/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:6:5-44
@@ -178,20 +190,20 @@ MERGED from [com.google.firebase:firebase-common-ktx:20.4.3] /Users/bahasorkun/.
 MERGED from [com.google.firebase:firebase-common-ktx:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1b56a86e29c60682b04b360b1703e20b/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/e166c952ed425beeb585bb8e2b4fe0d8/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:19:5-44
 MERGED from [com.google.firebase:firebase-common:20.4.3] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/e166c952ed425beeb585bb8e2b4fe0d8/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:19:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/34e0d2d945c88c4c34e2ba3d5108f01b/transformed/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/34e0d2d945c88c4c34e2ba3d5108f01b/transformed/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/606bc7bb42226c43c85986cacdd324be/transformed/jetified-play-services-auth-api-phone-18.0.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/606bc7bb42226c43c85986cacdd324be/transformed/jetified-play-services-auth-api-phone-18.0.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/16f7275201d61a2f7014090e369e5210/transformed/jetified-play-services-auth-base-18.0.10/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/16f7275201d61a2f7014090e369e5210/transformed/jetified-play-services-auth-base-18.0.10/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/03c6730f22ac5087785235714e1d3357/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/03c6730f22ac5087785235714e1d3357/transformed/jetified-play-services-fido-20.0.1/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1ca7f89971d8be3e5b9167293b7d5724/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/1ca7f89971d8be3e5b9167293b7d5724/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.play:integrity:1.2.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/9d3227361bc41efe1ff2817766580225/transformed/jetified-integrity-1.2.0/AndroidManifest.xml:4:5-44
 MERGED from [com.google.android.play:integrity:1.2.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/9d3227361bc41efe1ff2817766580225/transformed/jetified-integrity-1.2.0/AndroidManifest.xml:4:5-44
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/5948345bced23e5c549880d61536e696/transformed/jetified-firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/5948345bced23e5c549880d61536e696/transformed/jetified-firebase-appcheck-interop-17.1.0/AndroidManifest.xml:18:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/28d2e3c0e49c0364b206587796d49ab6/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/28d2e3c0e49c0364b206587796d49ab6/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/93f95a2d8ff346534a63688ae85a0bd6/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/93f95a2d8ff346534a63688ae85a0bd6/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/0ecb82cd9ae1b185c6c32a4db68ab679/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/0ecb82cd9ae1b185c6c32a4db68ab679/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/c6fa9877c740e31251a4787c0af35ce8/transformed/loader-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.1.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/c6fa9877c740e31251a4787c0af35ce8/transformed/loader-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/25778adce47accbc26e5040d1034bb24/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/25778adce47accbc26e5040d1034bb24/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/28b4f976a1695fd803e510dcd105404a/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:20:5-44
@@ -362,6 +374,26 @@ ADDED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_a
 		ADDED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_core/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_core] /Users/bahasorkun/Documents/GitHub/bendevar_mobile_app/build/firebase_core/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:17-124
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:21.0.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:34:13-89
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:22.3.1] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/6da537b55c3afc86fd80b50dc3f5cb57/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.11.0] /Users/bahasorkun/.gradle/caches/8.10.2/transforms/a405bde317ed168870df40719f06dfa4/transformed/jetified-firebase-firestore-24.11.0/AndroidManifest.xml:10:5-79

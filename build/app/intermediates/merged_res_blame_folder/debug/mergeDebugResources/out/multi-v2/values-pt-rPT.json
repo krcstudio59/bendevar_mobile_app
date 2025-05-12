@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.bende_var_mobile_app_test.app-mergeDebugResources-29:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.example.bende_var_mobile_app_test.app-mergeDebugResources-28:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "/Users/bahasorkun/.gradle/caches/8.10.2/transforms/0e87ad203dd736724c16ae3e4a059cba/transformed/jetified-play-services-basement-18.3.0/res/values-pt-rPT/values.xml",
