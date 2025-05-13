@@ -7,9 +7,7 @@ import 'package:intl/intl.dart';
 // Tarih formatlama için
 
 import '../models/ilan_model.dart'; // Ilan modelini import et
-import '../services/auth_service.dart';
 import '../services/ilan_service.dart'; // Ilan servisini import et
-import 'auth_screen.dart';
 // import 'add_item_screen.dart'; // Kaldırıldı
 // import 'add_request_screen.dart'; // Kaldırıldı
 import 'settings_screen.dart';
