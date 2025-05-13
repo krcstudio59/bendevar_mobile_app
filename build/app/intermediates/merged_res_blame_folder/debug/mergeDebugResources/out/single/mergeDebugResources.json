@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-debug-40:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-main-34:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-debug-40:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-main-34:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-debug-40:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-main-34:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-debug-40:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-main-34:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-debug-40:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-main-34:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-debug-40:/drawable-v21_launch_background.xml.flat",
+        "source": "/Users/bahasorkun/.gradle/daemon/8.10.2/com.example.bende_var_mobile_app_test.app-main-34:/drawable-v21/launch_background.xml"
+    }
+]
