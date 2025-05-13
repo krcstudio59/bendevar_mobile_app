@@ -7,7 +7,8 @@ import 'student_info_model.dart';
 class UserModel {
   final String id; // Document ID from Firestore
   final String uid; // Firebase Auth User ID
-  final String? name;
+  final String? firstName;
+  final String? lastName;
   final String? email;
   final String? phoneNumber;
   final String? profileImageUrl;
@@ -22,7 +23,8 @@ class UserModel {
   UserModel({
     required this.id,
     required this.uid,
-    this.name,
+    this.firstName,
+    this.lastName,
     this.email,
     this.phoneNumber,
     this.profileImageUrl,
@@ -39,7 +41,8 @@ class UserModel {
     return UserModel(
       id: documentId,
       uid: json['uid'] as String? ?? '',
-      name: json['name'] as String? ?? '',
+      firstName: json['firstName'] as String? ?? '',
+      lastName: json['lastName'] as String? ?? '',
       email: json['email'] as String? ?? '',
       phoneNumber: json['phoneNumber'] as String? ?? '',
       profileImageUrl: json['profileImageUrl'] as String? ?? '',
@@ -62,7 +65,8 @@ class UserModel {
     return {
       // id alanı Firestore tarafından otomatik yönetildiği için toJson'a eklenmez.
       'uid': uid,
-      'name': name,
+      'firstName': firstName,
+      'lastName': lastName,
       'email': email,
       'phoneNumber': phoneNumber,
       'profileImageUrl': profileImageUrl,

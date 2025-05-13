@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.35",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.54",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -21,13 +21,13 @@
     },
     {
       "name": "camera",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/camera-0.10.6",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/camera-0.11.1",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.6"
     },
     {
-      "name": "camera_android",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/camera_android-0.10.10+3",
+      "name": "camera_android_camerax",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/camera_android_camerax-0.6.16",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
@@ -63,21 +63,21 @@
     },
     {
       "name": "cloud_firestore",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/cloud_firestore-4.17.5",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/cloud_firestore-5.6.7",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "cloud_firestore_platform_interface",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-6.2.5",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-6.6.7",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "cloud_firestore_web",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.12.5",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.4.7",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.4"
     },
     {
       "name": "collection",
@@ -129,27 +129,27 @@
     },
     {
       "name": "firebase_auth",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_auth-4.16.0",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_auth-5.5.3",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.3.0",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.6.2",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_auth_web-5.8.13",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_auth_web-5.14.2",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.4"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_core-2.32.0",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_core-3.13.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "firebase_core_platform_interface",
@@ -165,21 +165,21 @@
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_storage-11.6.5",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_storage-12.4.5",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "firebase_storage_platform_interface",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.22",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.2.5",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.2"
     },
     {
       "name": "firebase_storage_web",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_storage_web-3.6.22",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/firebase_storage_web-3.10.12",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.4"
     },
     {
       "name": "flutter",
@@ -189,9 +189,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.5"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
@@ -216,42 +216,6 @@
       "rootUri": "file:///Users/bahasorkun/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.7"
-    },
-    {
-      "name": "google_identity_services_web",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/google_identity_services_web-0.3.3+1",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "google_sign_in",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/google_sign_in-6.3.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "google_sign_in_android",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/google_sign_in_android-6.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "google_sign_in_ios",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.9.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "google_sign_in_platform_interface",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.5.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "google_sign_in_web",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.4+4",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
     },
     {
       "name": "http",
@@ -314,10 +278,10 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "js",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/js-0.6.7",
+      "name": "intl",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/intl-0.20.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.3"
     },
     {
       "name": "leak_tracker",
@@ -339,9 +303,15 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/lints-2.1.1",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/lints-5.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "mask_text_input_formatter",
+      "rootUri": "file:///Users/bahasorkun/.pub-cache/hosted/pub.dev/mask_text_input_formatter-2.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "matcher",
@@ -470,7 +440,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2025-05-12T04:53:26.985419Z",
+  "generated": "2025-05-13T04:46:55.006742Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///Users/bahasorkun/flutter",

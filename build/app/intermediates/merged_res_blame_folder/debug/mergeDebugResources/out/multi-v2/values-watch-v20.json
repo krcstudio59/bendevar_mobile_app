@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.bende_var_mobile_app_test.app-mergeDebugResources-28:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.example.bende_var_mobile_app_test.app-mergeDebugResources-38:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/Users/bahasorkun/.gradle/caches/8.10.2/transforms/453d682bd220e11efce96d8087334fda/transformed/jetified-play-services-auth-21.0.0/res/values-watch-v20/values.xml",
+                    "source": "/Users/bahasorkun/.gradle/caches/8.10.2/transforms/2283abed0833ca4d6869c5efaf24cc4f/transformed/jetified-play-services-auth-20.7.0/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
