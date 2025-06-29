@@ -12,7 +12,8 @@ import 'auth_screen.dart';
 import '../utils/app_colors.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final bool showAppBar;
+  const SettingsScreen({super.key, this.showAppBar = true});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -229,234 +230,256 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+    final pageBody = _isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Profile Picture Section
+                  if (_isEditing)
+                    Center(
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage: _profileImageUrl != null
+                                ? NetworkImage(_profileImageUrl!)
+                                : null,
+                            backgroundColor: Colors.grey[200],
+                            child: _profileImageUrl == null
+                                ? Icon(Icons.person,
+                                    size: 50, color: Colors.grey[400])
+                                : null,
+                          ),
+                          TextButton.icon(
+                            icon: const Icon(Icons.camera_alt),
+                            label: const Text('Profil Fotoğrafını Değiştir'),
+                            onPressed: _pickProfileImage,
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (_isEditing) const SizedBox(height: 24),
+
+                  // User Info Section
+                  const Text(
+                    'Kişisel Bilgiler',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  _buildInfoField(
+                    label: 'Ad',
+                    controller: _firstNameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Ad boş bırakılamaz';
+                      }
+                      return null;
+                    },
+                  ),
+                  _buildInfoField(
+                    label: 'Soyad',
+                    controller: _lastNameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Soyad boş bırakılamaz';
+                      }
+                      return null;
+                    },
+                  ),
+                  _buildInfoField(
+                    label: 'Telefon Numarası',
+                    controller: _phoneController,
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [_phoneMaskFormatter],
+                    validator: (value) {
+                      final unmaskedText =
+                          _phoneMaskFormatter.getUnmaskedText();
+                      if (unmaskedText.isNotEmpty &&
+                          unmaskedText.length != 10) {
+                        return 'Telefon numarası 10 haneli olmalı';
+                      }
+                      if (unmaskedText.isNotEmpty &&
+                          !unmaskedText.startsWith('5')) {
+                        return 'Telefon numarası 5 ile başlamalı';
+                      }
+                      return null;
+                    },
+                  ),
+                  _buildInfoField(
+                    label: 'E-posta',
+                    controller: _emailController,
+                    enabled: false,
+                    validator: (value) => null,
+                  ),
+                  _buildInfoField(
+                    label: 'Adres',
+                    controller: _addressController,
+                    keyboardType: TextInputType.multiline,
+                    validator: (value) => null,
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Student Info Section
+                  const Text(
+                    'Okul Bilgileri',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildInfoField(
+                    label: 'Okul',
+                    controller: _schoolController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Okul adı gerekli';
+                      }
+                      return null;
+                    },
+                  ),
+                  _buildInfoField(
+                    label: 'Fakülte',
+                    controller: _facultyController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Fakülte adı gerekli';
+                      }
+                      return null;
+                    },
+                  ),
+                  _buildInfoField(
+                    label: 'Bölüm',
+                    controller: _departmentController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Bölüm adı gerekli';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 40),
+
+                  // Logout Button
+                  Center(
+                    child: TextButton(
+                      onPressed: () async {
+                        // Show confirmation dialog
+                        final bool? confirmLogout = await showDialog<bool>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Çıkış Yap'),
+                              content: const Text(
+                                  'Çıkış yapmak istediğinizden emin misiniz?'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('İptal'),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(false); // Return false
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text(
+                                    'Çıkış Yap',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(true); // Return true
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+
+                        // If confirmed, proceed with logout
+                        if (confirmLogout == true) {
+                          try {
+                            await context.read<AuthService>().signOut();
+                            // Navigate to AuthScreen and remove all previous routes
+                            if (mounted) {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const AuthScreen()),
+                                (Route<dynamic> route) =>
+                                    false, // Remove all routes
+                              );
+                            }
+                          } catch (e) {
+                            print("Çıkış yaparken hata: $e");
+                            if (mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Çıkış yapılırken bir hata oluştu: ${e.toString()}'),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          }
+                        }
+                      },
+                      child: const Text(
+                        'Çıkış Yap',
+                        style: TextStyle(
+                          color: AppColors.bordo,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+          );
+
+    if (!widget.showAppBar) {
+      return pageBody;
     }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ayarlar'),
         actions: [
-          if (!_isEditing)
-            IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: () => setState(() => _isEditing = true),
-            )
-          else
-            IconButton(
-              icon: const Icon(Icons.save),
-              onPressed: _saveSettings,
+          // Düzenle/Kaydet Butonu
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: TextButton(
+              onPressed: () {
+                if (_isEditing) {
+                  _saveSettings();
+                } else {
+                  setState(() {
+                    _isEditing = true;
+                  });
+                }
+              },
+              child: _isLoading
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: Colors.white))
+                  : Text(
+                      _isEditing ? 'KAYDET' : 'DÜZENLE',
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
             ),
+          ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Profile Picture Section
-              if (_isEditing)
-                Center(
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: _profileImageUrl != null
-                            ? NetworkImage(_profileImageUrl!)
-                            : null,
-                        backgroundColor: Colors.grey[200],
-                        child: _profileImageUrl == null
-                            ? Icon(Icons.person,
-                                size: 50, color: Colors.grey[400])
-                            : null,
-                      ),
-                      TextButton.icon(
-                        icon: const Icon(Icons.camera_alt),
-                        label: const Text('Profil Fotoğrafını Değiştir'),
-                        onPressed: _pickProfileImage,
-                      ),
-                    ],
-                  ),
-                ),
-              if (_isEditing) const SizedBox(height: 24),
-
-              // User Info Section
-              const Text(
-                'Kişisel Bilgiler',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              _buildInfoField(
-                label: 'Ad',
-                controller: _firstNameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Ad boş bırakılamaz';
-                  }
-                  return null;
-                },
-              ),
-              _buildInfoField(
-                label: 'Soyad',
-                controller: _lastNameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Soyad boş bırakılamaz';
-                  }
-                  return null;
-                },
-              ),
-              _buildInfoField(
-                label: 'Telefon Numarası',
-                controller: _phoneController,
-                keyboardType: TextInputType.phone,
-                inputFormatters: [_phoneMaskFormatter],
-                validator: (value) {
-                  final unmaskedText = _phoneMaskFormatter.getUnmaskedText();
-                  if (unmaskedText.isNotEmpty && unmaskedText.length != 10) {
-                    return 'Telefon numarası 10 haneli olmalı';
-                  }
-                  if (unmaskedText.isNotEmpty &&
-                      !unmaskedText.startsWith('5')) {
-                    return 'Telefon numarası 5 ile başlamalı';
-                  }
-                  return null;
-                },
-              ),
-              _buildInfoField(
-                label: 'E-posta',
-                controller: _emailController,
-                enabled: false,
-                validator: (value) => null,
-              ),
-              _buildInfoField(
-                label: 'Adres',
-                controller: _addressController,
-                keyboardType: TextInputType.multiline,
-                validator: (value) => null,
-              ),
-              const SizedBox(height: 24),
-
-              // Student Info Section
-              const Text(
-                'Okul Bilgileri',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
-              _buildInfoField(
-                label: 'Okul',
-                controller: _schoolController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Okul adı gerekli';
-                  }
-                  return null;
-                },
-              ),
-              _buildInfoField(
-                label: 'Fakülte',
-                controller: _facultyController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Fakülte adı gerekli';
-                  }
-                  return null;
-                },
-              ),
-              _buildInfoField(
-                label: 'Bölüm',
-                controller: _departmentController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Bölüm adı gerekli';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 40),
-
-              // Logout Button
-              Center(
-                child: TextButton(
-                  onPressed: () async {
-                    // Show confirmation dialog
-                    final bool? confirmLogout = await showDialog<bool>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Çıkış Yap'),
-                          content: const Text(
-                              'Çıkış yapmak istediğinizden emin misiniz?'),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text('İptal'),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pop(false); // Return false
-                              },
-                            ),
-                            TextButton(
-                              child: const Text(
-                                'Çıkış Yap',
-                                style: TextStyle(color: Colors.red),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop(true); // Return true
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-
-                    // If confirmed, proceed with logout
-                    if (confirmLogout == true) {
-                      try {
-                        await context.read<AuthService>().signOut();
-                        // Navigate to AuthScreen and remove all previous routes
-                        if (mounted) {
-                          Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => const AuthScreen()),
-                            (Route<dynamic> route) =>
-                                false, // Remove all routes
-                          );
-                        }
-                      } catch (e) {
-                        print("Çıkış yaparken hata: $e");
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                  'Çıkış yapılırken bir hata oluştu: ${e.toString()}'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                      }
-                    }
-                  },
-                  child: const Text(
-                    'Çıkış Yap',
-                    style: TextStyle(
-                      color: AppColors.bordo,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: pageBody,
     );
   }
 

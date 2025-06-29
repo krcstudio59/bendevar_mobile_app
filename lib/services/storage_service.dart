@@ -30,6 +30,9 @@ class StorageService {
   Future<String?> ilanFotografiYukle(
       {required String userId, required File imageFile}) async {
     try {
+      // Dosya verisini oku
+      final imageData = await imageFile.readAsBytes();
+
       // Benzersiz bir dosya adı oluştur (örn: userId_timestamp.jpg)
       String fileName =
           '${userId}_${DateTime.now().millisecondsSinceEpoch}.jpg';
@@ -41,8 +44,8 @@ class StorageService {
           .child(userId)
           .child(fileName);
 
-      // Dosyayı yükle
-      UploadTask uploadTask = storageRef.putFile(imageFile);
+      // Veriyi yükle (putFile yerine putData kullan)
+      UploadTask uploadTask = storageRef.putData(imageData);
 
       // Yükleme tamamlanınca URL'yi al
       TaskSnapshot snapshot = await uploadTask;

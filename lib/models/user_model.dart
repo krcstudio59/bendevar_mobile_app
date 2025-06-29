@@ -37,6 +37,30 @@ class UserModel {
     this.createdAt,
   });
 
+  factory UserModel.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return UserModel(
+      id: doc.id,
+      uid: data['uid'] ?? '',
+      firstName: data['firstName'],
+      lastName: data['lastName'],
+      email: data['email'],
+      phoneNumber: data['phoneNumber'],
+      profileImageUrl: data['profileImageUrl'],
+      studentInfo: data['studentInfo'] != null
+          ? StudentInfoModel.fromJson(data['studentInfo'])
+          : null,
+      studentDocumentUrl: data['studentDocumentUrl'],
+      isStudentVerified: data['isStudentVerified'] ?? false,
+      address: data['address'],
+      socialMediaLinks: data['socialMediaLinks'] != null
+          ? Map<String, String>.from(data['socialMediaLinks'])
+          : null,
+      score: data['score'] ?? 0,
+      createdAt: data['createdAt'],
+    );
+  }
+
   factory UserModel.fromJson(Map<String, dynamic> json, String documentId) {
     return UserModel(
       id: documentId,

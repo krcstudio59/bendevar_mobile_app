@@ -67,13 +67,6 @@ class _IlanOlusturmaEkraniState extends State<IlanOlusturmaEkrani> {
     if (!_formKey.currentState!.validate()) {
       return; // Form geçerli değilse işlemi durdur
     }
-    if (_seciliIlanTipi == 'BendeVar' && _secilenFotograf == null) {
-      // BendeVar ilanı için fotoğraf zorunluysa bu kontrolü ekle
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Lütfen bir ürün fotoğrafı seçin.')),
-      );
-      return;
-    }
 
     setState(() {
       _isLoading = true;
@@ -257,48 +250,70 @@ class _IlanOlusturmaEkraniState extends State<IlanOlusturmaEkrani> {
               ),
               const SizedBox(height: 16),
 
-              // Fotoğraf Ekleme Alanı (Sadece BendeVar için)
-              if (_seciliIlanTipi == 'BendeVar')
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Ürün Fotoğrafı',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 8),
-                    Center(
-                      child: _secilenFotograf != null
-                          ? Image.file(
-                              _secilenFotograf!,
+              // Sadece "BendeVar" seçiliyse fotoğraf alanını göster
+              if (_seciliIlanTipi == 'BendeVar') ...[
+                const SizedBox(height: 16),
+                // Fotoğraf Seçim Alanı
+                Center(
+                  child: Column(
+                    children: [
+                      _secilenFotograf == null
+                          ? Container(
+                              width: double.infinity,
                               height: 150,
-                              width: 150,
-                              fit: BoxFit.cover,
-                            )
-                          : Container(
-                              height: 150,
-                              width: 150,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
+                                border: Border.all(color: Colors.grey.shade400),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: const Icon(Icons.image_not_supported,
-                                  color: Colors.grey, size: 50),
+                              child: Center(
+                                child: TextButton.icon(
+                                  icon: const Icon(Icons.camera_alt),
+                                  label: const Text('Fotoğraf Seç'),
+                                  onPressed: _fotoSec,
+                                ),
+                              ),
+                            )
+                          : Stack(
+                              alignment: Alignment.topRight,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.file(
+                                    _secilenFotograf!,
+                                    width: double.infinity,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                // Fotoğrafı Kaldır Butonu
+                                Container(
+                                  margin: const EdgeInsets.all(4),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.black54,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.close,
+                                        color: Colors.white, size: 20),
+                                    onPressed: () {
+                                      setState(() {
+                                        _secilenFotograf = null;
+                                      });
+                                    },
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
+                                  ),
+                                ),
+                              ],
                             ),
-                    ),
-                    const SizedBox(height: 8),
-                    Center(
-                      child: ElevatedButton.icon(
-                        onPressed: _fotoSec,
-                        icon: const Icon(Icons.camera_alt),
-                        label: Text(_secilenFotograf == null
-                            ? 'Fotoğraf Seç'
-                            : 'Fotoğrafı Değiştir'),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                  ],
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 16),
+              ],
 
-              // Kaydet Butonu
+              // İlanı Kaydet Butonu
+              const SizedBox(height: 24),
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : ElevatedButton(

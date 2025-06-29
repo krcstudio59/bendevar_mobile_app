@@ -1,11 +1,11 @@
+import 'package:bendevar_mobile_app/services/ilan_service.dart';
+import 'package:bendevar_mobile_app/widgets/ilan_card.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+import '../models/ilan_model.dart';
 import '../models/user_model.dart';
-import '../models/item_model.dart';
-import '../models/request_model.dart';
-import '../services/auth_service.dart';
 import 'settings_screen.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -16,133 +16,116 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  bool _isLoading = true;
   UserModel? _currentUserData;
-  List<ItemModel> _userItems = [];
-  List<RequestModel> _userRequests = [];
-
-  final ScrollController _scrollController = ScrollController();
-  final GlobalKey _userItemsKey = GlobalKey();
-  final GlobalKey _userRequestsKey = GlobalKey();
+  bool _isUserLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadAllUserData();
+    _loadUserData();
   }
 
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _loadAllUserData() async {
-    print("AccountScreen: _loadAllUserData CALLED");
-    if (!mounted) {
-      print("AccountScreen: _loadAllUserData EXITED - NOT MOUNTED");
+  Future<void> _loadUserData() async {
+    if (!mounted) return;
+    setState(() => _isUserLoading = true);
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      if (mounted) setState(() => _isUserLoading = false);
       return;
     }
-    setState(() => _isLoading = true);
     try {
-      final user = FirebaseAuth.instance.currentUser;
-      if (user == null) {
-        if (mounted) setState(() => _isLoading = false);
-        print("AccountScreen: _loadAllUserData EXITED - USER IS NULL");
-        return;
-      }
-
       final userDoc = await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .get();
       if (userDoc.exists && mounted) {
-        _currentUserData = UserModel.fromJson(userDoc.data()!, userDoc.id);
-      } else {
-        _currentUserData = null;
+        setState(() {
+          _currentUserData = UserModel.fromJson(userDoc.data()!, userDoc.id);
+        });
       }
-
-      final itemsQuery = await FirebaseFirestore.instance
-          .collection('items')
-          .where('userId', isEqualTo: user.uid)
-          .orderBy('createdAt', descending: true)
-          .get();
-      _userItems = itemsQuery.docs
-          .map((doc) => ItemModel.fromJson(doc.data(), doc.id))
-          .toList();
-
-      final requestsQuery = await FirebaseFirestore.instance
-          .collection('requests')
-          .where('userId', isEqualTo: user.uid)
-          .orderBy('createdAt', descending: true)
-          .get();
-      _userRequests = requestsQuery.docs
-          .map((doc) => RequestModel.fromJson(doc.data(), doc.id))
-          .toList();
-
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
-      print("AccountScreen: _loadAllUserData SUCCESSFULLY COMPLETED");
     } catch (e) {
-      print('AccountScreen: Kullanıcı verileri yüklenirken hata: $e');
-      if (mounted) setState(() => _isLoading = false);
-      print("AccountScreen: _loadAllUserData COMPLETED WITH ERROR");
-    }
-  }
-
-  void _scrollToSection(GlobalKey key) {
-    final context = key.currentContext;
-    if (context != null) {
-      Scrollable.ensureVisible(
-        context,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-        alignment: 0.0,
-      );
+      print("Kullanıcı verisi yüklenemedi: $e");
+    } finally {
+      if (mounted) setState(() => _isUserLoading = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    final authService = Provider.of<AuthService>(context, listen: false);
+    final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            ("${_currentUserData?.firstName ?? ''} ${_currentUserData?.lastName ?? ''}"
-                    .trim()
-                    .isNotEmpty
-                ? "${_currentUserData?.firstName ?? ''} ${_currentUserData?.lastName ?? ''}"
-                    .trim()
-                : 'Hesabım')),
-        elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.titleLarge?.color,
-      ),
       body: RefreshIndicator(
-        onRefresh: _loadAllUserData,
+        onRefresh: _loadUserData,
         child: ListView(
-          controller: _scrollController,
           padding: const EdgeInsets.all(16),
           children: [
-            _buildProfileHeader(),
+            if (_isUserLoading)
+              const Center(child: CircularProgressIndicator())
+            else if (_currentUserData != null)
+              _buildProfileHeader()
+            else
+              const Center(child: Text('Kullanıcı bilgileri yüklenemedi.')),
+
             const SizedBox(height: 24),
             _buildStatsCard(),
             const SizedBox(height: 24),
-            _buildSimplifiedMenuSection(),
-            const SizedBox(height: 24),
-            Container(key: _userItemsKey, child: _buildUserItemsSection()),
-            const SizedBox(height: 24),
-            Container(
-                key: _userRequestsKey, child: _buildUserRequestsSection()),
+            // "Paylaştığım Ürünler" başlığı ve listesi
+            Text('Paylaştığım Ürünler',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            if (user != null)
+              _buildUserIlanlar(user.uid)
+            else
+              const Center(
+                  child: Text('İlanlarınızı görmek için giriş yapmalısınız.')),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildUserIlanlar(String userId) {
+    final ilanService = context.watch<IlanService>();
+    return StreamBuilder<List<Ilan>>(
+      stream: ilanService.getKullanicininIlanlari(userId),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          return Center(
+              child: Text(
+                  'İlanlar yüklenirken bir hata oluştu: ${snapshot.error}'));
+        }
+        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Text(
+                'Henüz hiç ilan paylaşmadınız.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+          );
+        }
+
+        final ilanlar = snapshot.data!;
+        return ListView.builder(
+          shrinkWrap: true, // ListView içinde ListView için önemli
+          physics:
+              const NeverScrollableScrollPhysics(), // Ana ListView scroll'unu kullan
+          itemCount: ilanlar.length,
+          itemBuilder: (context, index) {
+            final ilan = ilanlar[index];
+            return IlanCard(ilan: ilan); // Yeniden kullanılabilir kartımız
+          },
+        );
+      },
     );
   }
 
@@ -224,135 +207,6 @@ class _AccountScreenState extends State<AccountScreen> {
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
         Text(label, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
-      ],
-    );
-  }
-
-  Widget _buildSimplifiedMenuSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildMenuListItem(Icons.rate_review_outlined, 'Yorumlarım', () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Yorumlarım tıklandı (TODO)')),
-          );
-        }),
-      ],
-    );
-  }
-
-  Widget _buildMenuListItem(IconData icon, String title, VoidCallback onTap) {
-    return ListTile(
-      leading: Icon(icon, color: Colors.deepPurple),
-      title: Text(title),
-      trailing: const Icon(Icons.chevron_right),
-      onTap: onTap,
-      contentPadding: EdgeInsets.zero,
-    );
-  }
-
-  Widget _buildUserItemsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Paylaştığım Ürünler',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 16),
-        if (_userItems.isEmpty)
-          const Center(
-              child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.0),
-            child: Text('Henüz "Bende Var" ilanı paylaşmadınız.',
-                style: TextStyle(color: Colors.grey)),
-          ))
-        else
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: _userItems.length,
-            itemBuilder: (context, index) {
-              final item = _userItems[index];
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 6),
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: ListTile(
-                  leading: item.imageUrls != null && item.imageUrls!.isNotEmpty
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(4.0),
-                          child: Image.network(
-                            item.imageUrls!.first,
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.broken_image, size: 50),
-                          ),
-                        )
-                      : const SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: Icon(Icons.inventory_2_outlined,
-                              size: 30, color: Colors.grey)),
-                  title: Text(item.title,
-                      style: const TextStyle(fontWeight: FontWeight.w500)),
-                  subtitle: Text(item.description,
-                      maxLines: 1, overflow: TextOverflow.ellipsis),
-                ),
-              );
-            },
-          ),
-      ],
-    );
-  }
-
-  Widget _buildUserRequestsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Taleplerim',
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 16),
-        if (_userRequests.isEmpty)
-          const Center(
-              child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.0),
-            child: Text('Henüz "Bana Lazım" talebi oluşturmadınız.',
-                style: TextStyle(color: Colors.grey)),
-          ))
-        else
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: _userRequests.length,
-            itemBuilder: (context, index) {
-              final request = _userRequests[index];
-              return Card(
-                margin: const EdgeInsets.symmetric(vertical: 6),
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: ListTile(
-                  leading: const SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Icon(Icons.receipt_long_outlined,
-                          size: 30, color: Colors.grey)),
-                  title: Text(request.title,
-                      style: const TextStyle(fontWeight: FontWeight.w500)),
-                  subtitle: Text(request.description,
-                      maxLines: 1, overflow: TextOverflow.ellipsis),
-                ),
-              );
-            },
-          ),
       ],
     );
   }

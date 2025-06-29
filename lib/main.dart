@@ -1,15 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:bendevar_mobile_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'services/auth_service.dart';
 import 'services/ilan_service.dart';
 import 'services/storage_service.dart';
+import 'services/firestore_service.dart';
 import 'pages/splash_screen.dart';
 import 'utils/app_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await initializeDateFormatting('tr_TR', null);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -28,6 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         Provider<StorageService>(
           create: (_) => StorageService(),
+        ),
+        Provider<FirestoreService>(
+          create: (_) => FirestoreService(),
         ),
       ],
       child: MaterialApp(

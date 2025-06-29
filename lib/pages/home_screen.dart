@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:intl/intl.dart';
 // Tarih formatlama için
 
 import '../models/ilan_model.dart'; // Ilan modelini import et
@@ -16,6 +15,7 @@ import 'search_screen.dart';
 import 'favorites_screen.dart';
 import 'ilan_olusturma_ekrani.dart';
 import '../utils/app_colors.dart'; // Added AppColors import
+import '../widgets/ilan_card.dart'; // Yeni IlanCard widget'ını import et
 // import 'ilan_detay_ekrani.dart'; // Detay ekranı henüz yok, yorum satırı yapıldı
 
 class HomeScreen extends StatefulWidget {
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: ilanlar.length,
           itemBuilder: (context, index) {
             final ilan = ilanlar[index];
-            return _IlanKarti(ilan: ilan); // Her ilan için kart oluştur
+            return IlanCard(ilan: ilan); // Her ilan için YENİ kartı oluştur
           },
         );
       },
@@ -129,19 +129,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   String _getAppBarTitle() {
-    // Helper method for AppBar title
-    if (_isUserDataLoading) {
-      return 'BendeVar'; // Default title while loading
+    switch (_selectedIndex) {
+      case 0:
+        return 'Ana Sayfa';
+      case 1:
+        return 'Ara';
+      case 2:
+        return 'Favorilerim';
+      case 3:
+        return 'Hesabım';
+      case 4:
+        return 'Ayarlar';
+      default:
+        return 'BendeVar';
     }
-    if (_userData != null) {
-      final firstName = _userData!['firstName'] as String? ?? '';
-      final lastName = _userData!['lastName'] as String? ?? '';
-      final fullName = "$firstName $lastName".trim();
-      if (fullName.isNotEmpty) {
-        return fullName;
-      }
-    }
-    return 'BendeVar'; // Default title if no user name or data
   }
 
   @override
@@ -161,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentScreen = const AccountScreen();
         break;
       case 4:
-        currentScreen = const SettingsScreen();
+        currentScreen = const SettingsScreen(showAppBar: false);
         break;
       default:
         currentScreen = _buildHomeContent();
@@ -169,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_getAppBarTitle()), // Use helper method for title
+        title: Text(_getAppBarTitle()),
         actions: const [], // Empty actions list
       ),
       body: currentScreen,
@@ -243,134 +244,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           : null,
-    );
-  }
-}
-
-// Basit Ilan Kartı Widget'ı
-class _IlanKarti extends StatelessWidget {
-  final Ilan ilan;
-
-  const _IlanKarti({required this.ilan});
-
-  @override
-  Widget build(BuildContext context) {
-    // Tarihi daha okunabilir formatta göster
-    final formattedDate = DateFormat('dd MMMM yyyy, HH:mm', 'tr_TR')
-        .format(ilan.olusturulmaTarihi.toDate());
-
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-      elevation: 3,
-      child: InkWell(
-        onTap: () {
-          // İlan detay sayfasına gitme işlemi şimdilik yorum satırı
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) => IlanDetayEkrani(ilanId: ilan.id), // ID ile detay sayfasına git
-          //   ),
-          // );
-          print(
-              "İlan kartına tıklandı: ${ilan.id}"); // Geçici olarak ID'yi yazdır
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Fotoğraf Alanı (varsa)
-              if (ilan.fotografUrl != null && ilan.fotografUrl!.isNotEmpty)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    ilan.fotografUrl!,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                    // Yüklenirken veya hata durumunda gösterilecek widget'lar
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        width: 80,
-                        height: 80,
-                        color: Colors.grey[200],
-                        child: const Center(
-                            child: CircularProgressIndicator(strokeWidth: 2)),
-                      );
-                    },
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                          width: 80,
-                          height: 80,
-                          color: Colors.grey[200],
-                          child: const Icon(Icons.broken_image,
-                              color: Colors.grey));
-                    },
-                  ),
-                )
-              else // Fotoğraf yoksa ilan tipine göre ikon
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Icon(
-                    ilan.ilanTipi == 'BendeVar'
-                        ? Icons.check_circle_outline
-                        : Icons.help_outline,
-                    color: ilan.ilanTipi == 'BendeVar'
-                        ? Colors.green
-                        : Colors.orange,
-                    size: 40,
-                  ),
-                ),
-              const SizedBox(width: 12),
-              // Metin Alanı
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      ilan.baslik,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      ilan.kategori, // Kategori gösterilebilir
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.grey[600],
-                          ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      ilan.lokasyon,
-                      style: Theme.of(context).textTheme.bodySmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      formattedDate,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.grey[500],
-                            fontSize: 10,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

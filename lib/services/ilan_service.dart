@@ -44,6 +44,16 @@ class IlanService {
     });
   }
 
+  // Belirli bir kullanıcının ilanlarını getiren stream
+  Stream<List<Ilan>> getKullanicininIlanlari(String userId) {
+    return _ilanlarCollection
+        .where('userId', isEqualTo: userId)
+        .orderBy('olusturulmaTarihi', descending: true)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Ilan.fromFirestore(doc)).toList());
+  }
+
   // TODO: İleride eklenecek metotlar:
   // - Ilan guncelleme
   // - Ilan silme
