@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // _isLoading sadece kullanıcı verisi için kullanılacaksa kalabilir,
   // ilanlar için StreamBuilder kendi yükleme durumunu yönetecek.
-  bool _isUserDataLoading = true;
   Map<String, dynamic>? _userData;
   int _selectedIndex = 0;
   // _featuredItems ve _latestItems kaldırıldı
@@ -59,25 +58,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadUserData() async {
-    if (mounted) setState(() => _isUserDataLoading = true);
     try {
       final user = _auth.currentUser;
       if (user == null) {
-        if (mounted) setState(() => _isUserDataLoading = false);
         return;
       }
       final userDoc = await _firestore.collection('users').doc(user.uid).get();
       if (userDoc.exists && mounted) {
         setState(() {
           _userData = userDoc.data();
-          _isUserDataLoading = false;
         });
-      } else if (mounted) {
-        setState(() => _isUserDataLoading = false);
       }
     } catch (e) {
       print('Kullanıcı bilgileri yüklenirken hata: $e');
-      if (mounted) setState(() => _isUserDataLoading = false);
     }
   }
 
