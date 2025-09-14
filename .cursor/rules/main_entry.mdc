@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Ana Giriş Noktası ve Kurulum
+
+Uygulamanın ana giriş noktası [lib/main.dart](mdc:lib/main.dart) dosyasıdır.
+
+- Flutter bağlamalarını başlatır (`WidgetsFlutterBinding.ensureInitialized()`).
+- Firebase'i başlatır (`Firebase.initializeApp()`).
+- Ana `MyApp` widget'ını kurar.
+- `MyApp`, `AuthService`, `IlanService` ve `StorageService` gibi servisleri widget ağacı boyunca kullanılabilir hale getirmek için `MultiProvider`'ı yapılandırır.
+- Temel `MaterialApp` ayarlarını tanımlar (başlık, tema).
+- Başlangıçta gösterilen ekran [lib/pages/splash_screen.dart](mdc:lib/pages/splash_screen.dart) ekranıdır.
+- `SplashScreen`, kullanıcı giriş yapmışsa [lib/pages/home_screen.dart](mdc:lib/pages/home_screen.dart)'a, yapmamışsa [lib/pages/auth_screen.dart](mdc:lib/pages/auth_screen.dart)'a yönlendirir.

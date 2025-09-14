@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Arka Plan - Firebase
+
+Uygulama, arka plan servisi olarak Firebase'i kullanır.
+
+- **Başlatma:** Firebase, [lib/main.dart](mdc:lib/main.dart) dosyasında başlatılır.
+- **Servisler:** Şunlar için kullanılması amaçlanmıştır:
+    - **Kimlik Doğrulama:** Kullanıcı kaydı ve girişini yönetme ([lib/main.dart](mdc:lib/main.dart) içinde bahsedilen `AuthService` aracılığıyla muhtemeldir).
+    - **Veritabanı:** Çevrimiçi işlevselliği ve kullanıcılar arasında paylaşımı sağlamak için eşya ilanlarını saklama ve alma (örneğin, Firestore veya Realtime Database kullanarak). *Not: Belirli veritabanı uygulama detayları henüz sağlanan kodda mevcut değildir.*

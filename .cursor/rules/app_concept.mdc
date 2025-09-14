@@ -1,0 +1,13 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# BendeVar - Temel Konsept
+
+Bu, öğrencilerin kendi aralarında ücretsiz olarak eşya paylaşabilmeleri için tasarlanmış bir mobil uygulamadır.
+
+- **BendeVar:** Kullanıcılar, sahip oldukları ve vermek istedikleri eşyalar için ilan yayınlayabilirler.
+- **Bana Lazım:** Kullanıcılar, ihtiyaç duydukları eşyalar için talep oluşturabilirler.
+
+Uygulama, bir öğrenci topluluğu içinde eşya değişimini kolaylaştırmayı amaçlamaktadır.
